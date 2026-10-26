@@ -51,7 +51,7 @@ fn main() -> Result<(), String> {
                     let mut buffer = String::new();
                     for i in st.lines() {
                         let var = Var::parse_line(i);
-                        if !var.get_name().contains(&args[2][..]) {
+                        if var.get_name() == &args[2] {
                             buffer.push_str(i);
                         }
                     }
@@ -64,6 +64,14 @@ fn main() -> Result<(), String> {
                     match f.write_all(buffer.as_bytes()) {
                         Ok(()) => (),
                         Err(_) => return Err(String::from("Error: can't write to the file!")),
+                    }
+                },
+                "search" | "s" => {
+                    for i in st.lines() {
+                        let var = Var::parse_line(i);
+                        if var.get_name() == &args[2] {
+                            println!("{}", i);
+                        }
                     }
                 },
                 _ => return Err(String::from(consts::ERROR)),
