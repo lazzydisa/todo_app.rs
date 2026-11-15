@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-dsc_lib = "^1.0.0"
+dsc_lib = "*"
